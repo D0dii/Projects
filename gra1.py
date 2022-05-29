@@ -2,18 +2,11 @@ board = ["-","-","-",
         "-","-","-",
         "-","-","-"]
 
-def print_board(board):
-    print("-------------------------")
-    print(board[0],board[1],board[2])
-    print(board[3],board[4],board[5])
-    print(board[6],board[7],board[8])
-    print("-------------------------")
+def print_board():
+    return f'*****\n{board[0]} {board[1]} {board[2]} \n{board[3]} {board[4]} {board[5]} \n{board[6]} {board[7]} {board[8]}\n*****'
 
 def print_board_start():
-    print("Positions:")
-    print("1","2","3")
-    print("4","5","6")
-    print("7","8","9")
+    return f'Positions:\n1 2 3\n4 5 6 \n7 8 9 '
 
 def choose_if_start():
     player = None
@@ -114,7 +107,7 @@ def check_win(board):
 def game():
     turn = 1
     player,computer = choose_if_start()
-    print_board_start()
+    print(print_board_start())
     count = 0
     if player == 1:
             player_sign = "X"
@@ -123,7 +116,7 @@ def game():
         player_sign = "O"
         computer_sign = "X"
     while True:
-        print_board(board)
+        print(print_board())
         if turn == player:
             player_move(board,player_sign)
         elif turn == computer:
@@ -145,7 +138,7 @@ def game():
         count += 1
         if count == 9:
             print("It's a tie!")
-            print_board(board)
+            print(print_board())
             break
 
 game()
