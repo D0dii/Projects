@@ -45,7 +45,6 @@ def check_if_win_lose_comp(board,computer_sign,player_sign):
             if computer_sign == winner:
                 board[a] = "-"
                 return a
-                break
             else:
                 board[a] = "-"
 
@@ -56,7 +55,6 @@ def check_if_win_lose_comp(board,computer_sign,player_sign):
             if player_sign == winner_b:
                 board[b] = "-"
                 return b
-                break
             else:
                 board[b] = "-" 
 
