@@ -11,27 +11,36 @@ def print_board_start():
 def choose_if_start():
     player = None
     computer = None
-    decision = input("Do you want to start?: ")
-    if decision == "yes":
-        player = 1
-        computer = 2
-    elif decision == "no":
-        computer = 1
-        player = 2
+    decision = None
+    while decision != "yes" or decision != "no":
+        decision = input("Do you want to start?: ")
+        if decision == "yes":
+            player = 1
+            computer = 2
+            break
+        elif decision == "no":
+            computer = 1
+            player = 2
+            break
 
     return player,computer
         
-
 def player_move(board,player_sign):
-    player_move = int(input("Which position do you choose?: ")) - 1
-    while board[player_move] != "-":
-        player_move = int(input("Which position do you choose?: ")) - 1
+    try:
+        move = int(input("Which position do you choose?: "))
+        if board[(move)-1] == "-":
+            board[(move)-1] = player_sign
+            return board,player_sign
+        else:
+            print("This place is occupied")
+            player_move(board,player_sign)
+    except:
+        print("Invalid input")
+        player_move(board,player_sign)
 
-    board[player_move] = player_sign
-    return board,player_sign
 
 def check_if_win_lose_comp(board,computer_sign,player_sign):
-    for a in range(len(board)-1):
+    for a in range(len(board)):
         if board[a] == "-":
             board[a] = computer_sign
             winner = check_win(board)
@@ -41,7 +50,7 @@ def check_if_win_lose_comp(board,computer_sign,player_sign):
             else:
                 board[a] = "-"
 
-    for b in range(len(board)-1):
+    for b in range(len(board)):
         if board[b] == "-":
             board[b] = player_sign
             winner_b = check_win(board)
@@ -125,11 +134,11 @@ def game():
         winner = check_win(board)
         if computer_sign == winner:
             print("computer won!")
-            print_board(board)
+            print(print_board())
             break
         elif player_sign == winner:
             print("player won!")
-            print_board(board)
+            print(print_board())
             break
         if turn == 1:
             turn = 2
